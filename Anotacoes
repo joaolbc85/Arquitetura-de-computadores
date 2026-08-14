@@ -1,0 +1,44 @@
+
+**Fundamentos de hardware**
+
+- Hardware: A parte física de um sistema computacional
+- Software: A parte lógica de um sistema computacional
+  - Tipos de software:
+     - Softwares básicos: Sistemas operacionais 
+     - Softwares aplicativos
+     - Firmwares: Softwares instalados no próprio hardware(Ex: Bios)
+
+**Como funciona a CPU**
+
+- Dispositivos de entrada enviam dados para a CPU onde são processados até virarem uma informação, essa informação é passada para um dispositivo de saída que com um processo de Store/write armazena essa informação na memória ram, e após o armazenamento com um processo de load/read é enviado novamente a informação para a CPU, assim fazendo um processo ciclico.
+
+-Forma esquematizada do processo:
+- Dispositivos de entrada(Mouse, Teclado, Câmera...) -> Dados -> CPU -> Informação -> Dispositivos de saída(Monitor, Câmera, Caixa de som...) -> Armazenado na memória ram -> E é levado de volta para a CPU
+
+**Tipos de memórias**
+
+-Memória RAM(Random Acess Memory)
+- Memória principal ou primária
+- Analogia da "Mesa de trabalho"
+- Memória volátil(Perde todas as informações quando não energizado)
+- Onde os softwares são carregados para serem executados pela CPU
+
+-Memória ROM(Read Only Memory)
+- Não volátil(Não perde todas as informações quando não energizado)
+- Gravada de fábrica
+	- Exemplos de memórias ROMs:
+	- POST(Power-On-Self-Test)
+	- Setup -> CMOS(uma bateria de cadmio)
+	- BIOS/UEFI
+
+-Cache
+- Volátil
+- Embutidas no chip do processador
+- Acesso mais rápido
+- L1,L2,L3
+
+-Memórias de massa:
+- Memórias secundárias ou auxiliares(Ex: HD, SSD, Pendrive, DVD, Disket, CD, Fita Dat)
+- Não volátil
+- Acesso mais lento
+- Maior capacidade de armazenamento
