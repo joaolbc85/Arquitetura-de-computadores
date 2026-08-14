@@ -1,0 +1,132 @@
+
+-> A arquitetura de Von Neumamn
+-História e Origem:
+- A arquitetura de Von Neumamn foi proposta em 1942
+- Representa a base dos primeiros PCs
+ - A arquitetura de Von Neumamn usa uma única memória para armazenar dados e instruções
+ - A CPU lê instruções e processa dados na mesma memória
+ -Princípios básicos:
+ - Unidade de controle(UC): Coordena as operações
+ - Unidade lógica e aritmética
+ - Memória
+ - Barramento
+ -Vantagens e desvantagens:
+ - Vantagens: Simplicidade e flexibilidade de implementação
+ - Desvantagens: O gargalo de Von Neumamn, onde o processados pode esperar a memória para buscar dados dados e instruções
+
+->Arquitetura de Harvard
+-História e origem
+- Surgiu em 1940
+- Foi usada para computadores militares e sistemas embarcados
+- Utiliza memórias separadas para armazenar mesmos dados e instruções
+-Vantagens e desvantagens:
+- Vantagens: Maior desempenho devido ao acesso simultâneo em dados e instruções
+- Desvantagens: Mais complexo e mais necessidade de peças
+
+-> Diferenças entre Von Neumamn e Harvard:
+-Acesso a memória:
+- Von Neumamn:
+	- memória única para leitura e processamento de dados
+- Harvard:
+	- Memórias separadas p/ buscar dados e instruções
+
+
+
+
+->exemplos práticos:
+-Processadores Von Neumamn:
+>Computadores que não exigem 2 memórias(baixa criticidade)
+>Computadores pessoais, Notebooks, Smartphones
+>Raspberry Pi(versões padrões)
+>Servidores comuns(sem requisitos de tempo real)
+>Sistemas embarcados simples
+
+-Caracteristicas:
+>Custo baixo
+>estrutura simples
+>atraso possível(barramento ocmpartilhado)
+>Uso geral, não critico
+
+
+-Processadores Harvard:
+>Computadores de bordo de aviões comerciais e militares
+>Controle de usinas nucleares
+>Equipamentos médicos críticos(UTI, ressonância)
+>Controle de satélites e foguetes
+>sistemas militares de mísseis
+>controle de satélites e foguetes
+>DSPs(Digital signal Processor) Para radares e comunicação
+>Automóveis com direção autonoma
+
+#CISC e #RISC
+-Contexto histórico para a computação:
+- Computadores eram grandes e lentos
+- Objetivo: Criar computadores menores que pudessem executar mais rapidamente
+
+-Surgimento:
+- Significado de #CISC em português: Computador com conjunto complexo de instruções
+- criado em 1970, o #CISC foi desenvolvido para aumentar o número de instruções em baixo nível
+- Um único comando poderia fazer diversas coisas ao mesmo tempo
+- **Exemplos**: Processadores Intel 8086 e Intel 386 (Famosos na década de 1980)
+
+-Características da #CISC:
+- Instruções complexas: Cada instrução pode realizar várias operações
+- Tamanho variável das instruções: Algumas instruções podem ser mais curtas, outras mais longas
+
+-Vantagens da #CISC:
+- Menos código para programar
+ - Eficiência na memória(Menos variáveis e mais instruções alto nível)
+
+-Desvantagens da #CISC:
+- processadores mais lentos
+- Mais ciclos de clock por instrução
+- Maior consumo de energia
+
+-**Exemplos de processadores** #CISC:
+- **Intel 8086(1980):** Um dos primeiros a usar #CISC
+- **Intel Pentium:** Exemplos mais recentes(1990) de processadores de #CISC
+
+~Arquitetura #RISC 
+
+-Surgimento da #RISC:
+- Significado de #RISC em português: Computador com uso reduzido de instruções
+- Criado em 1980, em resposta as limitações do #CISC 
+- Foco: Instruções simples e rápidas que fazem apenas uma coisa.
+- Exemplos: MISP e SPARC
+
+-Características da arquitetura #RISC:
+- Instruções simples: cada instrução faz uma única operação
+- Tamanho Fixo das instruções: Todas as instruções tem o mesmo tamanho
+
+-Vantagens da #RISC:
+- Execução mais rápida por instrução
+- Consome menos energia
+
+-Desvantagens da #RISC:
+- Mais código para escrever.
+- Necessidade de mais instruções para fazer a mesma tarefa.
+
+-Exemplos de processadores #RISC:
+- ARM: Popular em dispositivos móveis e smartphones
+- MIPS: Usado em sistemas embarcados 
+
+-Por que #RISC foi desenvolvido?
+- Limitações do #CISC
+- Objetivo do #RISC 
+
+-Convergência entre #CISC e #RISC:
+- Convergência: A mistura da de características #RISC e #CISC 
+- Por que isso acontece? Para ter o melhor desempenho do #RISC e a compatibilidade do #CISC 
+
+-Exemplos de convergência do #CISC e #RISC:
+- Intel Core I7: Usa a ideia de #RISC internamente e tem a compatibilidade com sistemas #CISC 
+
+-O #CISC foi totalmente abandonado?:
+- Não foi abandonado por dois fatores:
+    - Compatibilidade com software legado
+    - Avanços tecnológicos
+      - Microcódigos
+      - Elementos #RISC internos
+
+-O #RISC ganhou características de #CISC:
+- Processadores de ARM, que são altamente usados em dispositivos móveis, incorporaram instruções mais sofisticadas para atender necessidades específicas como operações de criptografia.
