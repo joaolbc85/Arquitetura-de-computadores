@@ -1,0 +1,43 @@
+
+**Barramento**
+- Elemento de interconexão entre componentes do computador
+- Três linhas:
+   - Linha de endereços
+   - linha de dados
+   - linha de controle
+- Linha de endereço:
+  - Origem e destino de dados
+- Linha de dados:
+  - Caminho de movimentação de dados
+- Linha de controle:
+  - gerenciar o acesso e o uso das linhas de dados e de endereços em um barramento compartilhado
+
+**Instruções da CPU**
+- LOAD - instrução de transferência
+  - LOAD R1, [R0]
+- STORE - Escrever o conteúdo de um registrador na memória
+  - STORE R1, [R0]
+- ADD - instrução para realizar operações de adição
+   - ADD,X,Y,Z
+- COMPARE - Avaliar condições e determinar a relação entre dois valores
+   - EQUAL |LESS| |GREATER| |LESS EQUAL| GREATER EQUAL
+
+**Registradores da CPU**
+
+- PC (Program Counter)
+  - armazena o endereço da instrução a ser executada
+ - MAR(Memory Addres Register) 
+   - Armazena um endereço de memória
+ - MBR(Memory Buffer Register)
+   - Armazena uma palavra de dados(lida ou escrita)
+ - IR(Instruction Register)
+   - Contém a última instrução buscada
+
+OBS: Registradores **são voláteis**
+
+**Ciclo de busca e execução**
+
+Carregar/buscar -> Decodificar -> Executar -> Carregar/buscar -> ....
+(e fica em ciclo iniciando por Carregar/buscar e indo até executar)
+
+
