@@ -1,0 +1,78 @@
+
+
+**Hazard de pipeline**
+
+- O hazard de pipeline é qualquer situação que pode:
+	- Interromper
+	- Atrapalhar
+	- Ou impedir que o pipeline funcione no seu ritmo normal
+- O pipeline foi criado para executar várias instruções em paralelo, cada uma em uma etapa diferente
+- mas quando esse paralelismo gera insatisfações ou interrompidos ele é um hazard de pipeline
+
+- Na CPU:
+	- Depende de um dado que ainda não existe
+	- decisão de desvio ainda não tomada
+	- recurso ocupado por outra instrução -> é um risco de atraso ou execução incorreta
+
+-Tipos de hazard de pipeline:
+- Data hazard - falta de dado pronto
+- Control hazard - falta de decisão sobre o caminho
+- Structal hazard - falta de recurso de hardware disponível
+
+-Data hazard:
+- quando o dado ainda não está pronto
+- é como tentar usar algo que ainda não existe
+- Na CPU:
+	- LOAD REG1, VAR1: O valor da variável var1 ainda está sendo buscado na memória RAM para ser armazenado no registrador REG1
+		- Solução 1: Stalling(inserir "bolhas"):
+			- O processador pausa o pipeline, inserindo um ciclo de espera, para resolver dependências entre instruções
+			- o que esse ciclo faz? **Nada**! Por isso cada etapa desse ciclo é chamada de bolha.
+			- Evita erros por uso de dados ainda não disponíveis
+		- Solução 2: Forwarding(Bypassing):
+			- O processador envia diretamente o resultado para a próxima instrução para a próxima que precisa dele, sem esperar que ele seja salvo na memória
+			- Analogia: um funcionário da fábrica passa uma peça direto para o próximo colega na linha de montagem, sem esperar ela ir para o estoque primeiro
+		- Solução 3: Reordering(reordenamento de instruções)
+			- Reorganiza as instruções para evitar dependência direta
+				- Ex:
+					- load Reg1, var1
+					- add reg2, reg1,3: depende do registrador reg1
+					- store reg3, var2: é uma operação independente da a operação interior
+					- Reordenando:
+					- Load reg1, var1
+					- store reg3, var2: operação executada enquanto reg1 ainda aguarda o valor de var1
+					- add reg2, reg1, 3: executa depois, sem hazard
+					- Analogia: enquanto o trabalhador espera uma peça trabalha em outro carro
+
+
+-Control hazard:
+- Control hazard acontece quando há uma instrução de condicional e enquanto esta não é executada(decidida), a CPU não sabe qual operação executar
+	- Solução 1: Esperar a decisão(STALL/BOLHAS)
+		- A CPU para por alguns ciclos até descobrir se o desvio será tomado
+		- é como segurar a linha até a decisão ficar pronta
+			- Exemplo na CPU:
+			- Se reg1 = reg2, instrução 1, senão, instrução 2
+			- pausa(bolha) ou mais se necessário
+			- instrução 1 ou instrução 2 após a decisão
+			- Demora mais, mas a possibilidade de acertar é maior
+	- Solução 2: Executa a próxima instrução mesmo sem saber(DELAY SLOT)
+		- A instrução logo após o desvio sempre será executada, independentemente de a condição ser atendida ou não
+			- Exemplo:
+				- Se reg1 = reg2, instrução 1, senão, instrução 2
+				- Reg3, Reg4, reg5(está instrução é executada independente da condicional
+				- Não há rollback: Se a condicional for executada, a instrução anterior foi executada
+	- Solução 3: Previsão de desvio(Brench Prediction)
+		- A CPU tenta adivinhar se o desvio  vai acontecer, usando histórico de desvios para essa condicional
+		- se acertar -> Não há nenhum atraso
+		- Se errar -> Descarta as instruções carregadas(flush) e executa a decisão certa
+
+
+-Structural hazard:
+- Digamos que uma CPU tenha apenas disponível uma memória, compartilhada para leitura e escrita de instruções e dados
+	- Exemplo:
+		- load reg1, var1 # reg1 precisa receber o valor de var1 na memória
+			- Solução 1: Stall(bolha)
+			- Solução 2: Duplicação de hardware
+				- Load reg1, var1_mem1 # reg1 precisa receber o valor de var1 na memória 1
+				- load reg2, var2_mem2 # reg 2precisa receber o valor de var2 na memória 2
+				- Solução: Ter duas unidades de memória
+			- Solução 3: Reordenação de instruções
