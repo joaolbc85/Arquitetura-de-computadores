@@ -1,0 +1,79 @@
+
+Arquitetura de computadores Pipeline
+
+
+**Pipeline**
+-Analogia:
+- Pipeline water -> water -> filtro -> clean water 
+-Técnica que divide a execução em duas etapas
+-permite que uma instrução inicie antes da anterior terminar
+-processa várias instruções simultaneamente em fases diferentes
+-Aumenta o desempenho do processador
+
+**Sem pipeline**
+-Como um processador funciona sem pipeline?
+-  Imagine que o processador tenha que executar essas instruções
+	- A = 5
+	- b = A + 3
+	- Onde A e B são registrado(Armazenamento interno do processador)
+	- Etapas do processor clássico de 5 estágios(sem pipiline):
+		- 1.IF(Instruction Fetch): Busca - A instrução é lida da memória
+		- 2.ID(Instruction decode): Decodificação - A UC entende o que deve ser feito
+		- 3.EX(Decode): Execução: A ULA realiza o cálculo
+		- 4.MEM(Acesso a memória): memória - usada apenas se houver escrita na memória
+		- 5.WB(write-Back): O resultado é gravado no registrador
+	- Resultado final: B = 8
+
+- Ou seja:
+	- 1. IF - Buscar a instrução
+	- 2. ID - Decodificar a instrução
+	- 3. EX - Executar a instrução
+	- 4. MEM - Acessar a memória
+	- 5. RB - Escrever o resultado de volta ao registrador
+
+
+
+**Com pipiline:**
+
+- Imagine agora que o processador precisa executar essas instruções:(Com pipeline):
+	- 1. A =X
+	- 2. B = A + C
+	- 3. D = B - E
+	- 4. Y = D
+	- 5.Se D for 0, mudar o fluxo do programa
+	- Onde A, B e D são registradores na CPU e X e Y são variáveis de memória
+		- A produção flui em paralelo
+			- No primeiro ciclo: A primeira instrução é buscada na memória(IF)
+			- No segundo ciclo: A  primeira é decodifica(ID) e a segunda já começa a ser buscada(IF)
+			- No terceiro ciclo: A primeira é executada(EX), A segunda já passa para a decodificação(ID), a terceira já é buscada(IF)
+			- No quarto ciclo pra frente por ai em diante
+
+-Por que o pipeline é tão importante?
+- maior eficiência: A próxima instrução começa antes que a atual termine.
+- Uso de recursos paralelos: O trabalho é distribuído entre diferentes etapas.
+- Menor tempo por instrução: Executa instruções em paralelo, divididas em estágios
+- Aumenta muito o desempenho do processador
+- Funciona como uma linha de produção contínua
+- Aproveita melhor os recursos da CPU
+
+
+**Pipiline de 3,4 e 5 estágios**
+
+- Exemplo1: LOAD A, X(Carregar valor da variável X na memória para registrador A na CPU)
+	- Nesse exemplo as etapas vão ocorrer em IF -> ID -> EX -> RB
+	- Nesse exemplo não ocorre o MEM pois a função é transferência e não armazenamento
+- Exemplo2: ADD A,B,C(Soma os valores dos registradores B e C e armazena em A)
+	- A ordem é IF -> ID -> EX -> WB
+	- O MEM não ocorre nesse exemplo pois não há armazenamento
+- Exemplo3: STORE A,X(Salvar valor do registrador A na viável X na memória)
+	- Ordem: IF -> ID -> EX -> MEM -> WB
+	- Nessa etapa ocorre o MEM pois armazena o valor de A em X
+- Exemplo4: Sub A,B,C(subtrai os valores dos registradores B e C e armazena no registrador A)
+	- Ordem: IF -> ID -> EX -> WB
+	- Não ocorre o MEM
+- Exemplo4: Se A == B, Operação 1: verifica se o valor do registrador A é igual ao valor do registrador B e caso seja verdadeiro executa a operação 1(condicional)
+	- IF: Busca instrução
+	- ID: Decodifica
+	- EX: Compara os dois registradores
+	- MEM: Se forem iguais, atualiza o PC e novo endereço é buscado na memória
+	- WB: não tem write-back, pois não há armazenamento em registrador
