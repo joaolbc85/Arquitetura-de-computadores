@@ -1,0 +1,115 @@
+
+Tema: Programação de registradores
+
+**Níveis de linguagens de programação:**
+-Linguagens de alto nível: Linguagens mais próximos da linguagem humana e mais abstrata.
+- Ex: C, C++. Java, Python
+-Linguagens de baixo nível: Linguagens mais próximas do hardware
+- Ex: Assembly e código de maquina
+	- Uso: Programação em nível hardware, firmware
+
+-Ordem de profundidade da linguagem
+- Javascript, python -> Java, C# -> C++ -> Fortran - C - Pascal -> Assembly -> Linguagem de máquina -> Hardware
+
+
+**Compiladores e interpretadores:**
+-Compiladores: Traduzem código-fonte de uma linguagem de alto nível para código de máquina ou Assembly, criando um arquivo executável
+- Ex: C, C++, Fortran, Pascal etc.
+
+- Processo O código é analisado, otimizado e convertido me código de máquina de uma vez
+	- Hello_world.c(Código em C) -> Compilador -> Hello_world.o(Em binário)
+
+-Interpretadores> Executam o código-fonte linha por linha, traduzindo em tempo real.
+- Ex: Python, Javascript etc.
+
+- Processo: O código é analisado e executado linha por linha, sem criar um arquivo executável separado.
+
+- Algoritmo(Código-fonte) -> é executado por Interpretador -> Executa cada comando e envia para o hardware e sistema operacional
+
+-Algumas linguagens utilizam uma combinação de compilação e interpretação.
+- Ex: Java(Compilado para bytecode e interpretado pela JVM)
+
+-Bytecode é um formato intermediário de código gerado pelo compilador Java, que não é diretamente executado pelo hardware
+
+-A JVM(Java Virtual Machine) é o "tradutor" que converte bytecode Java em código de máquina, permitindo que programas Java rodem em qualquer sistema com a JVM instalada.
+
+
+
+Assembler e Assembly
+-Assembler(ou montador):
+- Descrição: Programação que traduz o código Assembly em código de máquina.
+- Funcionamento: Associa mnemônicos a códigos binários equivalentes
+-Assembly:
+- Descrição: Linguagem de montagem, um nível de abstração acima da linguagem de máquina, utilizando mnemônicos para representar instruções de máquina. 
+
+	- Assembler{
+	- Instruções \ Binário
+	-  Add <----> 10100110
+	-  Sub <----> 10110011
+	- }
+
+
+-Funcionamento do assembler:
+- Mnemônicos> Representações simbólicas de instruções de máquina como MOV, ADD.
+- Código binário: Instruções representadas em formato binário que o processador pode executar.
+- Processo: O assembler converte mnemônicos e operandos em uma sequência de códigos binários que correspondem às instruções do processador.
+
+-ISA(Instruction Set Architecture):
+- Conjunto de instruções que um processador pode entender e executar
+- Ela define o formato das instruções, os tipos de operações suportadas(Como adição, subtração, comparação, etc.), os tipos de registradores, e como a memória é acessada.
+- **Relação entre assembler e ISA:**
+	- o código assembly é escrito usando a sintaxe e as instruções definidas pela ISA.
+	- Cada ISA tem seu próprio conjunto de instruções e sintaxe correspondente em assembly
+	- O assembler converte as instruções assembly, que são legíveis para humanos em código de máquina binário que o processador pode executar.
+		- Código assembly -> ISA -> Assembler -> Código de máquina
+
+
+Registradores:
+- Descrição: Localizações de armazenamento de alta velocidade dentro da CPU
+- Uso: Armazenam dados temporários e instruções
+- Tipos de registradores:
+	- Registradores Gerais: Usados para operações de dados, como add a, b, c.
+	- Registradores de propósito específico: Como o contador de programa(PC) o registrador de status.
+	- Registradores de dados: Mantêm valores temporários usados nas operações
+
+Programação em registradores:
+-Vantagens:
+- Controle preciso: Permite controle direto sobre os recursos do processador e a manipulação detalhada de dados e instruções, possibilitando otimizações específicas para o hardware
+- Desempenho máximo: Pode resultar em código altamente otimizado e eficiente, evitando-se sobrecarga desnecessária e maximizar o uso do hardware.
+- Entendimento profundo: Fornece uma compreensão mais profunda de como o processador e arquitetura do sistema funcionam.
+-Desvantagens:
+- Complexidade: O código Assembly é mais complexo e difícil de escrever e ler do que as linguagens de alto nível, o que pode aumentar o tempo de desenvolvimento e manutenção.
+- Portabilidade: O código Assembly é específico para uma arquitetura de processador, tornando-o menos portátil. O mesmo código pode não funcionar em diferentes tipos de processadores ou sistemas.
+- Manutenção e Deputação: O código Assembly pode ser mais difícil de manter e depurar em comparação com linguagens de alto nível, devido à sua natureza de talhada e baixo nível
+
+Linguagens usadas em Assembly:
+- MIPS Assembly: Usada para programar processadores MIPS, como os encontrados em embarcados e algumas arquiteturas educacionais. MIPS Mars é um simulador popular para a linguagem
+- x86 Assembly: Usada para programar processadores x86-64, comuns em computadores pessoais e servidores.
+- ARM Assembly: Usada para processadores ARM, encontrados em muitos dispositivos móveis e sistemas embarcados.
+
+MIPS Mars:
+- Um simulador e ambiente de desenvolvimento para linguagem Assembly MIPS
+- Ele fornece uma interface gráfica para escrever, depurar e simular código MIPS Assembly.
+- Facilita o aprendizado e a experimentação com a arquitetura MIPS.
+- Tipos de registradores no MIPS Mars:
+	- Registradores para números inteiros ou também chamados de registradores de propósito geral(GPRs - general purpose registers):
+		- Número: 32 registradores(R0 a R31).
+		- Função: Usados para armazenar  dados temporários, operando de operações aritméticas e lógicas, endereços de memória, etc.
+		- Ex: 
+			- $t0 a $t9: Registradores temporários.
+			- $s0 a $s7: Registradores salvos(preservam o valor entre chamadas de função).
+			- $a0 a $a3: Registradores de argumentos.
+			- $v0 e $v1: Registradores de valor de retorno.
+
+
+Conjunto de instruções MIPS:
+- Instrução é uma palavra da linguagem;
+- No Assembly, MIPS, temos instruções com até 3 operandos(Registradores);
+- ISA = Instruction Set Archtecture(Arquitetura de conjunto de intruções).
+- Há 32 registradores de 32 bits cada;
+-Load e Store:
+- Load: Instrução que movimenta os dados da memória para o registrador(Operação de leitura da memória)
+- Store: Instrução que movimenta os dados do registrador para a memória(Operação de escrita na memória)
+-Move:
+- Instrução para passar o conteúdo de um registrador para outro registrador
+- Memória RAM não é envolvida.
